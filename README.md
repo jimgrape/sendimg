@@ -1,20 +1,45 @@
-# sendimg
-一个weechat的小插件，用于通过图床发送图片
+# sendimg：weechat图床插件
+> 一个[weechat](https://weechat.org/download/) 插件，用于通过图床发送图片
 
-# 安装方法
-git clone git@github.com:jimgrape/sendimg.git ~/.weechat/python/
 
-cd ~/.weechat/python/autoload
+## Install
 
-ln -s ../script.py
+```
+$ it clone git@github.com:jimgrape/sendimg.git ~/.weechat/python/
+$ cd ~/.weechat/python/autoload
+$ ln -s ../script.py
+```
 
-# 使用方法
+## Usage
 
-进入weechat
+```
+	[python/sendimg] /sendimg [filename]
 
-输入：/sendimg [图片路径] ，例如：/sendimg ~/Desktop/1.png,即可把图片转化为链接发送
+	filename可以是：
+		/home/XXX/Desktop/XXX.jpg
+		~/Desktop/XXX.png
+		'/home/XXX/Desktop/XXX.jpg'
 
-TIPS：可以直接选中图片，通过Ctrl+Shift+P粘贴到weechat
+	建议复制文件后，直接Ctrl+Shift+P粘贴
+```
+	
+### Examples
+```
+  	在weechat聊天窗口中输入：
+  	/sendimg ~/Desktop/test.png
 
-# 联系我
-祝玩得愉快，欢迎留言～
+```
+
+### about picture bed
+
+```
+	默认图床
+	https://img.vim-cn.com/
+
+	修改图床地址
+	/set plugins.var.python.sendimg.picbed "xxxx"
+```
+
+## License
+
+GPL3 © 
