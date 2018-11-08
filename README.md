@@ -30,7 +30,7 @@
 
 ```
 
-### about picture bed
+### About Picture Bed
 
 ```
 	默认图床
