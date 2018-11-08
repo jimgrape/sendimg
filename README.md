@@ -1,13 +1,13 @@
 # sendimg：weechat图床插件
-> 一个[weechat](https://weechat.org/download/) 插件，用于通过图床发送图片
+一个[weechat](https://weechat.org/download/) 插件，用于通过图床发送图片
 
 
 ## Install
 
 ```
-$ it clone git@github.com:jimgrape/sendimg.git ~/.weechat/python/
-$ cd ~/.weechat/python/autoload
-$ ln -s ../script.py
+	$ it clone git@github.com:jimgrape/sendimg.git ~/.weechat/python/
+	$ cd ~/.weechat/python/autoload
+	$ ln -s ../script.py
 ```
 
 ## Usage
