@@ -37,7 +37,7 @@
 	https://img.vim-cn.com/
 
 	修改图床地址
-	/set plugins.var.python.sendimg.picbed "xxxx"
+	/sendimg picbed https://xxxx.xx.xxx
 ```
 
 ## License

@@ -20,6 +20,8 @@
 # (this script requires WeeChat 0.3 or newer)
 #
 # History:
+# 2018-11-12, ksy
+#  version 0.5
 # 2018-11-05, ksy <910661511@qq.com>
 #  version 0.1: initial release
 
@@ -29,7 +31,7 @@ import weechat as w
 
 SCRIPT_NAME    = "sendimg"
 SCRIPT_AUTHOR  = "ksy <910661511@qq.com>"
-SCRIPT_VERSION = "0.1"
+SCRIPT_VERSION = "0.5"
 SCRIPT_LICENSE = "GPL3"
 SCRIPT_DESC    = "send your image to the chanel via the picture bed"
 SCRIPT_COMMAND  = SCRIPT_NAME
@@ -47,38 +49,44 @@ if w.register(SCRIPT_NAME, SCRIPT_AUTHOR, SCRIPT_VERSION, SCRIPT_LICENSE,SCRIPT_
         "send image via the picture bed",
         "[filename]",
         "  filename: target file \n",
-        "%f",
+        " || picbed",
         "sendimg_cmd",
         '')
 
 def sendimg_cmd(data, buffer, args):
     ''' Callback for /sendimg command '''
 
-    filename = args
-
-    if not filename:
+    args = args.split()
+    if len(args) == 0:
         w.command('', '/help %s' %SCRIPT_COMMAND)
         return w.WEECHAT_RC_OK
+    elif len(args) == 1:
+        ''' send pic directly '''
+        filename = args[0]
 
-    filename = filename.strip("'")
-    ''' use for '/home/ksy/xxx.png' '''
+        filename = filename.strip("'")
+        ''' use for '/home/ksy/xxx.png' '''
 
-    filename = filename.replace('file://','')
-    ''' filename may have a head if you copy from desktop '''
+        filename = filename.replace('file://','')
+        ''' filename may have a head if you copy from desktop '''
 
-    w.prnt(buffer, 'sending\t'+filename)
-    ''' show the picture you sent '''
+        w.prnt(buffer, 'sending\t'+filename)
+        ''' show the picture you sent '''
 
-    filename = filename.replace('~', expanduser('~'))
-    ''' curl can't use '~' '''
+        filename = filename.replace('~', expanduser('~'))
+        ''' curl can't use '~' '''
 
-    if not exists(filename):
-        w.prnt('', 'Error: target file does not exist!')
-        return w.WEECHAT_RC_OK
+        if not exists(filename):
+            w.prnt('', 'Error: target file does not exist!')
+            return w.WEECHAT_RC_OK
 
-    picbed = w.config_get_plugin('picbed')
-    cmd = "curl -s -F 'name=@" + filename + "' " + picbed 
+        picbed = w.config_get_plugin('picbed')
+        cmd = "curl -s -F 'name=@" + filename + "' " + picbed 
 
-    w.command(buffer, popen(cmd).read())
-    # w.command(buffer, '/window refresh')
+        w.command(buffer, popen(cmd).read())
+
+    else:
+        if args[0] == 'picbed':
+            w.config_set_plugin('picbed', args[1])
+
     return w.WEECHAT_RC_OK
