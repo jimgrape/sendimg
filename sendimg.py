@@ -49,7 +49,7 @@ if w.register(SCRIPT_NAME, SCRIPT_AUTHOR, SCRIPT_VERSION, SCRIPT_LICENSE,SCRIPT_
         "send image via the picture bed",
         "[filename]",
         "  filename: target file \n",
-        " || picbed",
+        "",
         "sendimg_cmd",
         '')
 
